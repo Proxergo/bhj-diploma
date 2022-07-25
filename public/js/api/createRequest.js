@@ -2,14 +2,14 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
- const createRequest = (options = {}) => {
+const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
-    let urlAppend = '';
+    let queryParams = '';
 
     if (options.data) {
         if (options.method === 'GET') {
-            urlAppend ='?' + Object.entries(options.data).map(
+            queryParams ='?' + Object.entries(options.data).map(
                 ([key, value]) => '${encodeURIComponent(key)} = ${encodeURIComponent(value)}'
                 ).join('&');
         } else {
@@ -19,7 +19,7 @@
 
     
     try {
-        xhr.open(options.method, options.url + urlAppend, true);
+        xhr.open(options.method, options.url + queryParams, true);
         xhr.responseType = 'json';
         xhr.send(formData);
     } catch {

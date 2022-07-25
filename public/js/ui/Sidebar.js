@@ -17,10 +17,14 @@ class Sidebar {
    * переключает два класса для body: sidebar-open и sidebar-collapse
    * при нажатии на кнопку .sidebar-toggle
    * */
-  static initToggleButton() {
+  static initToggleButton() {   
+    document.querySelector('.sidebar-toggle').addEventListener('click', ()=> {      
+      document.querySelector('.sidebar-mini').classList.toggle('sidebar-open');
+      document.querySelector('.sidebar-mini').classList.toggle('sidebar-collapse')
+    })
 
   }
-
+  
   /**
    * При нажатии на кнопку входа, показывает окно входа
    * (через найденное в App.getModal)
@@ -29,6 +33,24 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
+    document.querySelector('.menu-item_register > a').addEventListener('click', (elem) => {
+      elem.preventDefault();
+      App.getModal('register').open();
+    })
 
+    document.querySelector('.menu-item_login > a').addEventListener('click', (elem) => {
+      elem.preventDefault();
+      App.getModal('login').open();
+    })
+
+    document.querySelector('.menu-item_logout > a').addEventListener('click', (elem => {
+      elem.preventDefault();
+      User.logout((err, response) => {
+        if (response && response.success) {
+          App.setState('init');
+        }
+      });
+    }))
+    
   }
 }
