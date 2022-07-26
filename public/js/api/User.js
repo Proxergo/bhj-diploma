@@ -1,16 +1,16 @@
+
 /*Управляет авторизацией, выходом и регистрацией пользователя из приложения*/
+
 class User {
   static URL = '/user';
   static setCurrent(user) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  /*Удаляет информацию об авторизованном пользователе из локального хранилища.*/
   static unsetCurrent() {
     localStorage.removeItem('user');
   }
 
-  /* Возвращает текущего авторизованного пользователя из локального хранилища*/
   static current() {
     const user = localStorage.user;
     if (user) {
@@ -20,7 +20,6 @@ class User {
     }
   }
 
-  /*Получает информацию о текущем авторизованном пользователе.*/
   static fetch(callback) {
     createRequest({
       url: this.URL + '/current',
@@ -36,7 +35,6 @@ class User {
     });
   }
 
-  /*Производит попытку авторизации.*/
   static login(data, callback) {
     return createRequest({
       url: this.URL + '/login',
@@ -51,7 +49,6 @@ class User {
     });
   }
 
-  /* Производит попытку регистрации пользователя.*/
   static register(data, callback) {
     return createRequest ({
       url: this.URL + '/register',
@@ -67,7 +64,6 @@ class User {
     })
   }
 
-  /*Производит выход из приложения.*/
   static logout(callback) {
     return createRequest ({
       url: this.URL + '/logout',

@@ -37,7 +37,6 @@ class AccountsWidget {
   onSelectAccount(element) {     
     if (this.selectedAccount) {
       this.selectedAccount.classList.remove('active');
-      document.querySelector('.content').textContent = ''; //иначе транзакции просто копятся бесконечно, пока не обновишь страницу
     }
     element.classList.add('active');
     this.selectedAccount = element;
