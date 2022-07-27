@@ -19,8 +19,6 @@ class CreateTransactionForm extends AsyncForm {
             `<option value="${elem.id}">${elem.name}</option>`;            
           });
           accountSelect.insertAdjacentHTML('beforeend', html);
-      } else {
-        console.error('err');
       }
   });
   }
@@ -32,8 +30,6 @@ class CreateTransactionForm extends AsyncForm {
         App.getModal('newIncome').close();
         App.getModal('newExpense').close();
         App.update();     
-      } else {
-        console.error('Не удалось получить данные от сервера для создания транзакции');
       }
     });
   }
