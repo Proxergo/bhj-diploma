@@ -9,7 +9,7 @@ class RegisterForm extends AsyncForm {
         App.setState('user-logged');
         App.getModal('register').close();
       } else {
-        console.error('Не удалось произвести регистрацию пользователя')
+        throw new Error('Не удалось произвести регистрацию пользователя')
       }
     }) 
   }

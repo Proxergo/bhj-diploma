@@ -80,3 +80,20 @@
 .transaction__controls {
   line-height: 70px;
 }
+
+select.accounts-select {
+  width: 70%;
+}
+
+.currency {
+  width: 20%;
+}
+
+.account-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account-options > label {
+  position: absolute;
+}

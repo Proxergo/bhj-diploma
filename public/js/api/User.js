@@ -12,12 +12,7 @@ class User {
   }
 
   static current() {
-    const user = localStorage.user;
-    if (user) {
-      return JSON.parse(localStorage.user);
-    } else {
-      return undefined;
-    }
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   static fetch(callback) {
@@ -45,6 +40,7 @@ class User {
           this.setCurrent(response.user);
         }
         callback(err, response);
+        currency();
       }
     });
   }

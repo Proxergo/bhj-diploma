@@ -6,7 +6,7 @@
 class AsyncForm {
   constructor(element) {
     if (!element) {
-      console.error('Элемент формы не был передан')
+      throw new Error('Элемент формы не был передан')
     } 
     this.element = element;
     this.registerEvents();

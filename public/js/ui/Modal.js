@@ -4,7 +4,7 @@
 class Modal {
   constructor(element){
     if (!element) {
-      console.error('При создании модального окна не был передан элемент');
+      throw new Error('При создании модального окна не был передан элемент');
     } 
     this.element = element;
     this.registerEvents();

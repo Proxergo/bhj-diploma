@@ -4,7 +4,7 @@
 class UserWidget {
   constructor(element){
     if (!element) {
-      console.error('Элемент с данными пользователя не был передан')
+      throw new Error('Элемент с данными пользователя не был передан')
     } else {
       this.element = element;
     }

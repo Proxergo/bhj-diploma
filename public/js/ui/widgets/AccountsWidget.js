@@ -3,7 +3,7 @@
 class AccountsWidget {
   constructor( element ) {
     if (!element) {
-      console.error('Элемент не найден')
+      throw new Error('Элемент не найден')
     }
     this.element = element;
     this.registerEvents();
@@ -11,13 +11,15 @@ class AccountsWidget {
   }
 
   registerEvents() {
-    this.element.addEventListener('click', (elem) => {
-      elem.preventDefault();
-      if (elem.target.classList.contains('create-account')) {
-          App.getModal('createAccount').open();
-      }
+    this.element.addEventListener('click', (event) => {
+      event.preventDefault();
 
-      this.onSelectAccount(elem.target.closest('li'));
+      if (event.target.closest('li')) {
+        if (event.target.classList.contains('create-account')) {
+          App.getModal('createAccount').open();
+        }
+        this.onSelectAccount(event.target.closest('li'));
+      }
     });
   }
 

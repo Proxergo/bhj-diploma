@@ -9,7 +9,7 @@ const createRequest = (options = {}) => {
     if (options.data) {
         if (options.method === 'GET') {
             queryParams ='?' + Object.entries(options.data).map(
-                ([key, value]) => '${encodeURIComponent(key)} = ${encodeURIComponent(value)}'
+                ([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
                 ).join('&');
         } else {
             Object.entries(options.data).forEach(item => formData.append(...item));
@@ -27,17 +27,15 @@ const createRequest = (options = {}) => {
     
 
     xhr.addEventListener('load', () => {
-    if (xhr.readyState === xhr.DONE) {
         let error = null;
         let response = null;
         
         if (xhr.status === 200) {
             response = xhr.response;
             } else {
-            error = xhr.status;
+                throw new Error(xhr.status);
             }
             options.callback(error, response);
-        }
     });
     
     return xhr; 

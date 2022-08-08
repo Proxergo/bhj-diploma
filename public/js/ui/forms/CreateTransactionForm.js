@@ -6,21 +6,14 @@ class CreateTransactionForm extends AsyncForm {
   constructor(element) {
     super(element)
     this.renderAccountsList();
+   //this.renderCurrency();
   }
 
   renderAccountsList() {
     const accountSelect = this.element.querySelector('.accounts-select');
     Account.list(User.current(), (err, response) => {
       if (response && response.data) {
-          accountSelect.textContent = '';
-          let html = '';
-          response.data.forEach((elem) => {            
-            html += 
-            `<option value="${elem.id}">${elem.name}</option>`;            
-          });
-          accountSelect.insertAdjacentHTML('beforeend', html);
-      } else {
-        console.error('err');
+          accountSelect.innerHTML = response.data.reduce((init, item) => init + `<option value="${item.id}">${item.name}</option>`, '');          
       }
   });
   }
@@ -32,9 +25,25 @@ class CreateTransactionForm extends AsyncForm {
         App.getModal('newIncome').close();
         App.getModal('newExpense').close();
         App.update();     
-      } else {
-        console.error('Не удалось получить данные от сервера для создания транзакции');
       }
     });
+  } 
+
+  renderCurrency() {
+    const currencies = JSON.parse(localStorage.currencyList);
+    //console.log(currency);
+    let currency = [];
+    const currencyList = document.querySelector('.currency');
+    //JSON.parse(localStorage.currencyList).USD.CharCode;
+    //console.log(currency.USD[CharCode])
+    let html = '';
+    
+    for (let item in currencies) {
+      if (currencies.hasOwnProperty(item)) {
+        currency.push(item)
+      }
+    }
+    console.log(html);
+    currencyList.innerHTML = html;    
   }
 }

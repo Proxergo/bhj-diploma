@@ -4,7 +4,7 @@
 class TransactionsWidget {
   constructor( element ) {
     if (!element) {
-      console.error('Элемент для создания транзакции не был передан');            
+      throw new Error('Элемент для создания транзакции не был передан');            
     } 
 
     this.element = element;

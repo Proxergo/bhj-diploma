@@ -9,7 +9,7 @@ class CreateAccountForm extends AsyncForm {
           App.getModal('createAccount').close();
           App.update();
         } else {
-          console.error(response.error);          
+          throw new Error(response.error);          
         }      
     });    
   }

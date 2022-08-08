@@ -6,8 +6,8 @@ class Entity {
 
   static list(data, callback){
     return createRequest({
-      url: this.URL + `?account_id=${data}`,
-      responseType: 'json',
+      data,
+      url: this.URL,
       method: 'GET',
       callback,
     });
@@ -17,7 +17,6 @@ class Entity {
     return createRequest({
       url: this.URL,
       data,
-      responseType: 'json',
       method: 'PUT',
       callback,
     });
@@ -27,7 +26,6 @@ class Entity {
     return createRequest({
       url: this.URL + '/',
       data,
-      responseType: 'json',
       method: 'DELETE',
       callback,
     });

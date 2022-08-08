@@ -4,7 +4,7 @@
 class TransactionsPage {
   constructor( element ) {
     if (!element) {     
-      console.error('Элемент не был передан при попытке показать транзакцию');      
+      throw new Error('Элемент не был передан при попытке показать транзакцию');      
     }
     this.element = element;
     this.registerEvents();
@@ -50,7 +50,7 @@ class TransactionsPage {
             App.getWidget('accounts').update();
             this.update();
           } else {
-            console.error(err);
+            throw new Error(err);
           }   
         });
       }
@@ -68,7 +68,7 @@ class TransactionsPage {
         }
       });
 
-      Transaction.list(options.account_id, (err, response) => {
+      Transaction.list( {account_id: options.account_id}, (err, response) => {
         if (err) {
           console.error(err);
         } else {          
